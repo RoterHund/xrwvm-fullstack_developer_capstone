@@ -1,4 +1,5 @@
-// Import required modules
+/*jshint esversion: 8 */
+
 const express = require('express'); // Express framework for handling HTTP requests
 const mongoose = require('mongoose'); // Mongoose for MongoDB object modeling
 const fs = require('fs'); // File system module for file operations
