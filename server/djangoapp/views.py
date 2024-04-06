@@ -7,7 +7,10 @@ from django.views.decorators.csrf import csrf_exempt
 from .populate import initiate
 from .models import CarMake, CarModel
 from .restapis import get_request, analyze_review_sentiments, post_review
+import logging
 
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 @csrf_exempt
 def login_user(request):
