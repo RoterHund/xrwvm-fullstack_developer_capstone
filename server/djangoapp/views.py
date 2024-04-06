@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # from django.contrib.auth import logout
 # from django.contrib import messages
 # from datetime import datetime
-# from django.http import JsonResponse
+from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
 # import logging
 import json
@@ -111,4 +111,4 @@ def get_cars(request):
     for car_model in car_models:
         cars.append({"CarModel": car_model.name, "CarMake": car_model.car_make.name})
     return JsonResponse({"CarModels": cars})
-
+    
