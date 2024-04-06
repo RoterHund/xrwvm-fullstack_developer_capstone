@@ -8,6 +8,7 @@ from .populate import initiate
 from .models import CarMake, CarModel
 from .restapis import get_request, analyze_review_sentiments, post_review
 
+
 @csrf_exempt
 def login_user(request):
     data = json.loads(request.body)
@@ -20,10 +21,12 @@ def login_user(request):
         response_data["status"] = "Authenticated"
     return JsonResponse(response_data)
 
+
 @csrf_exempt
 def logout_request(request):
     data = {"userName": ""}
     return JsonResponse(data)
+
 
 @csrf_exempt
 def registration(request):
@@ -50,6 +53,7 @@ def registration(request):
         response_data = {"userName": username, "error": "Already Registered"}
         return JsonResponse(response_data)
 
+
 def get_dealerships(request, state="All"):
     if state == "All":
         endpoint = "/fetchDealers"
@@ -57,6 +61,7 @@ def get_dealerships(request, state="All"):
         endpoint = "/fetchDealers/"+state
     dealerships = get_request(endpoint)
     return JsonResponse({"status": 200, "dealers": dealerships})
+
 
 def get_dealer_reviews(request, dealer_id):
     if dealer_id:
@@ -69,6 +74,7 @@ def get_dealer_reviews(request, dealer_id):
     else:
         return JsonResponse({"status": 400, "message": "Bad Request"})
 
+
 def get_dealer_details(request, dealer_id):
     if dealer_id:
         endpoint = "/fetchDealer/"+str(dealer_id)
@@ -76,6 +82,7 @@ def get_dealer_details(request, dealer_id):
         return JsonResponse({"status": 200, "dealer": dealership})
     else:
         return JsonResponse({"status": 400, "message": "Bad Request"})
+
 
 def add_review(request):
     if not request.user.is_anonymous:
@@ -87,6 +94,7 @@ def add_review(request):
             return JsonResponse({"status": 401, "message": "Error in posting review"})
     else:
         return JsonResponse({"status": 403, "message": "Unauthorized"})
+
 
 def get_cars(request):
     count = CarMake.objects.filter().count()
